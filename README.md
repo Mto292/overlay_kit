@@ -44,17 +44,17 @@ import 'package:overlay_kit/overlay_kit.dart';
 
 Start it with
 ```dart
-   OverlayLoadingProgress.start();
+OverlayLoadingProgress.start();
 ```
 
 Stop it with
 ```dart
-   OverlayLoadingProgress.stop();
+OverlayLoadingProgress.stop();
 ```
 
 #### Complete Example
 ```dart
-   OverlayLoadingProgress.start();
+OverlayLoadingProgress.start();
 await Future.delayed(const Duration(seconds: 3));
 OverlayLoadingProgress.stop();
 ```
@@ -64,7 +64,7 @@ OverlayLoadingProgress.stop();
 
 #### Use With Gif
 ```dart
-   OverlayLoadingProgress.start(gifOrImagePath: 'assets/loading.gif');
+OverlayLoadingProgress.start(gifOrImagePath: 'assets/loading.gif');
 await Future.delayed(const Duration(seconds: 3));
 OverlayLoadingProgress.stop();
 ```
@@ -74,15 +74,15 @@ OverlayLoadingProgress.stop();
 
 #### Use With Custom Widget
 ```dart
-   OverlayLoadingProgress.start(
-widget: Container(
-width: MediaQuery.of(context).size.width / 4,
-padding: EdgeInsets.all(MediaQuery.of(context).size.width / 13),
-child: const AspectRatio(
-aspectRatio: 1,
-child: const CircularProgressIndicator(),
-),
-),
+OverlayLoadingProgress.start(
+  widget: Container(
+    width: MediaQuery.of(context).size.width / 4,
+    padding: EdgeInsets.all(MediaQuery.of(context).size.width / 13),
+    child: const AspectRatio(
+    aspectRatio: 1,
+    child: const CircularProgressIndicator(),
+    ),
+  ),
 );
 await Future.delayed(const Duration(seconds: 3));
 OverlayLoadingProgress.stop();
@@ -94,7 +94,7 @@ OverlayLoadingProgress.stop();
 
 Show it with
 ```dart
-   OverlayToastMessage.show(textMessage: 'Dismiss All And Show Toast');
+OverlayToastMessage.show(textMessage: 'Dismiss All And Show Toast');
 ```
 
 <img src="https://user-images.githubusercontent.com/49743631/209962853-b3c3df90-5818-46d2-92ab-e5eb8f7c1c01.png" alt="drawing" width="200"/>
@@ -114,9 +114,11 @@ OverlayToastMessage.show(
 ## 2- Future Extension
 Show Loading Progress with Extension.
 
-
 ```dart
 Future.delayed(const Duration(seconds: 5)).callWithProgress();
 ```
+
+
+
 
 
