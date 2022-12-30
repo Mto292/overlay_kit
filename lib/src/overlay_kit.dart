@@ -31,6 +31,5 @@ class OverlayKit extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }
