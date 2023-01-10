@@ -12,7 +12,7 @@ A flutter package of overlay kit.
 
 ```yaml
    dependencies:
-     overlay_kit: ^1.0.0
+     overlay_kit: ^1.0.1
 ```
 
 2- import package
@@ -39,8 +39,6 @@ import 'package:overlay_kit/overlay_kit.dart';
 ```
 
 ## 1. Loading Progress
-[overlay_loading_progress](https://pub.dev/packages/overlay_loading_progress "overlay_loading_progress") package is being use.
-
 
 Start it with
 ```dart
@@ -89,8 +87,6 @@ OverlayLoadingProgress.stop();
 ```
 
 ## 2- Toast Message
-[overlay_toast_message](https://pub.dev/packages/overlay_toast_message "overlay_toast_message") package is being use.
-
 
 Show it with
 ```dart

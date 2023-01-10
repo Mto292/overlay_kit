@@ -13,9 +13,7 @@ class MyApp extends StatelessWidget {
     return OverlayKit(
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue),
         home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
     );
