@@ -102,20 +102,6 @@ packages:
       relative: true
     source: path
     version: "1.0.0"
-  overlay_loading_progress:
-    dependency: transitive
-    description:
-      name: overlay_loading_progress
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
-  overlay_toast_message:
-    dependency: transitive
-    description:
-      name: overlay_toast_message
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   path:
     dependency: transitive
     description:

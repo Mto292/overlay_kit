@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Overlay, OverlayEntry, OverlayState;
+
+import 'overlay/overlay.dart';
 
 class OverlayKit extends StatelessWidget {
   final Widget child;
