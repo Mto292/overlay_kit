@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:overlay_loading_progress/overlay_loading_progress.dart' as overlay;
-
+import 'package:flutter/material.dart' hide Overlay, OverlayEntry, OverlayState;
 import '../../overlay_kit.dart';
+import '../overlay/overlay.dart';
 
 class OverlayLoadingProgress {
-  OverlayLoadingProgress._();
+  static OverlayEntry? _overlay;
 
-  static void start({
+  static start({
     BuildContext? context,
     Color? barrierColor = Colors.black54,
     Widget? widget,
@@ -14,20 +13,70 @@ class OverlayLoadingProgress {
     String? gifOrImagePath,
     bool barrierDismissible = false,
     double? loadingWidth,
-  }) {
+  }) async {
     assert(context != null || OverlayKit.overlayKitContext != null);
-    overlay.OverlayLoadingProgress.start(
-      context ?? OverlayKit.overlayKitContext!,
-      barrierColor: barrierColor,
-      widget: widget,
-      color: color,
-      gifOrImagePath: gifOrImagePath,
-      barrierDismissible: barrierDismissible,
-      loadingWidth: loadingWidth,
-    );
+
+    final ctx = context ?? OverlayKit.overlayKitContext!;
+
+    if (_overlay != null) return;
+    _overlay = OverlayEntry(builder: (BuildContext context) {
+      return _LoadingWidget(
+        color: color,
+        barrierColor: barrierColor,
+        widget: widget,
+        gifOrImagePath: gifOrImagePath,
+        barrierDismissible: barrierDismissible,
+        loadingWidth: loadingWidth,
+      );
+    });
+    Overlay.of(ctx)!.insert(_overlay!);
   }
 
-  static void stop() {
-    overlay.OverlayLoadingProgress.stop();
+  static stop() {
+    if (_overlay == null) return;
+    _overlay!.remove();
+    _overlay = null;
+  }
+}
+
+class _LoadingWidget extends StatelessWidget {
+  final Widget? widget;
+  final Color? color;
+  final Color? barrierColor;
+  final String? gifOrImagePath;
+  final bool barrierDismissible;
+  final double? loadingWidth;
+
+  const _LoadingWidget({
+    Key? key,
+    this.widget,
+    this.color,
+    this.barrierColor,
+    this.gifOrImagePath,
+    required this.barrierDismissible,
+    this.loadingWidth,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: barrierDismissible ? OverlayLoadingProgress.stop : null,
+      child: Container(
+        constraints: const BoxConstraints.expand(),
+        color: barrierColor,
+        child: GestureDetector(
+          onTap: () {},
+          child: Center(
+            child: widget ??
+                SizedBox.square(
+                  dimension: loadingWidth,
+                  child: gifOrImagePath != null
+                      ? Image.asset(gifOrImagePath!)
+                      : const CircularProgressIndicator(strokeWidth: 3),
+                ),
+          ),
+        ),
+      ),
+    );
   }
 }
