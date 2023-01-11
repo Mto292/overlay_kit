@@ -12,7 +12,7 @@ A flutter package of overlay kit.
 
 ```yaml
    dependencies:
-     overlay_kit: ^1.0.1
+     overlay_kit: ^1.0.2
 ```
 
 2- import package

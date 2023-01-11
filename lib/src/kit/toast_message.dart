@@ -145,6 +145,7 @@ class Manager {
   late final Timer _timer;
 
   Manager(Duration duration, this.overlay) {
+    overlay.addListener(_listener);
     _timer = Timer(duration, () {
       dismiss();
       OverlayToastManager().remove(this);
@@ -154,7 +155,13 @@ class Manager {
   void dismiss() {
     _timer.cancel();
     overlay.remove();
-    overlay.dispose();
+  }
+
+  void _listener() {
+    if (!overlay.mounted){
+      overlay.dispose();
+      overlay.removeListener(_listener);
+    }
   }
 }
 
