@@ -37,7 +37,7 @@ class OverlayToastMessage extends StatefulWidget {
     final over = OverlayEntry(builder: (BuildContext overlayContext) => this);
     Overlay.of(ctx)!.insert(over);
 
-    final manager = Manager(duration, over);
+    final manager = _Manager(duration, over);
     if (dismissAll) OverlayToastManager().dismissAll();
     OverlayToastManager().add(manager);
   }
@@ -140,11 +140,11 @@ class _ToastWidgetState extends State<OverlayToastMessage> {
   }
 }
 
-class Manager {
+class _Manager {
   final OverlayEntry overlay;
   late final Timer _timer;
 
-  Manager(Duration duration, this.overlay) {
+  _Manager(Duration duration, this.overlay) {
     overlay.addListener(_listener);
     _timer = Timer(duration, () {
       dismiss();
@@ -175,13 +175,13 @@ class OverlayToastManager {
     return _instance!;
   }
 
-  final Set<Manager> _managers = {};
+  final Set<_Manager> _managers = {};
 
-  void add(Manager future) {
+  void add(_Manager future) {
     _managers.add(future);
   }
 
-  void remove(Manager future) {
+  void remove(_Manager future) {
     _managers.remove(future);
   }
 
