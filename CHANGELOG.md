@@ -1,3 +1,6 @@
+## 1.0.3
+manager class is hidden
+
 ## 1.0.2
 toast bug fixed
 
