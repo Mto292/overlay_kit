@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dop_logger/dop_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_kit/overlay_kit.dart';
@@ -39,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(Random().nextInt(250), Random().nextInt(250), Random().nextInt(250), 1),
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -74,6 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: onTapDismissAllAndShowToastBtn,
               child: const Text('Dismiss All And Show Toast'),
             ),
+            ElevatedButton(
+              onPressed: onTapNewPageBtn,
+              child: const Text('New Page'),
+            ),
           ],
         ),
       ),
@@ -82,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   onTapStartBtn() async {
     OverlayLoadingProgress.start();
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 10));
     OverlayLoadingProgress.stop();
   }
 
@@ -161,5 +168,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  void onTapNewPageBtn() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const MyHomePage(title: '',)));
   }
 }

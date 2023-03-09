@@ -1,3 +1,6 @@
+## 1.0.4
+edited documentation
+
 ## 1.0.3
 manager class is hidden
 
