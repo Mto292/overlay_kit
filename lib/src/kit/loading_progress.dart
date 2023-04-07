@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart' hide Overlay, OverlayEntry, OverlayState;
 import '../../overlay_kit.dart';
 import '../overlay/overlay.dart';
@@ -39,7 +40,7 @@ class OverlayLoadingProgress {
   }
 }
 
-class _LoadingWidget extends StatelessWidget {
+class _LoadingWidget extends StatefulWidget {
   final Widget? widget;
   final Color? color;
   final Color? barrierColor;
@@ -58,20 +59,41 @@ class _LoadingWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<_LoadingWidget> createState() => _LoadingWidgetState();
+}
+
+class _LoadingWidgetState extends State<_LoadingWidget> {
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+    return true;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: barrierDismissible ? OverlayLoadingProgress.stop : null,
+      onTap: widget.barrierDismissible ? OverlayLoadingProgress.stop : null,
       child: Container(
         constraints: const BoxConstraints.expand(),
-        color: barrierColor,
+        color: widget.barrierColor,
         child: GestureDetector(
           onTap: () {},
           child: Center(
-            child: widget ??
+            child: widget.widget ??
                 SizedBox.square(
-                  dimension: loadingWidth,
-                  child: gifOrImagePath != null
-                      ? Image.asset(gifOrImagePath!)
+                  dimension: widget.loadingWidth,
+                  child: widget.gifOrImagePath != null
+                      ? Image.asset(widget.gifOrImagePath!)
                       : const CircularProgressIndicator(strokeWidth: 3),
                 ),
           ),

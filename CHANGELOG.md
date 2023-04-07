@@ -1,3 +1,12 @@
+## 1.0.6
+doc edit
+
+## 1.0.5
+back button fixed
+
+## 1.0.4
+edited documentation
+
 ## 1.0.3
 manager class is hidden
 

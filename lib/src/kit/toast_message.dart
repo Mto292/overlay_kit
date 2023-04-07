@@ -89,7 +89,8 @@ class _ToastWidgetState extends State<OverlayToastMessage> {
                         color: Colors.black12,
                       )
                     ],
-                    borderRadius: widget.borderRadius ?? BorderRadius.circular(8),
+                    borderRadius:
+                        widget.borderRadius ?? BorderRadius.circular(8),
                   ),
               child: Padding(
                 padding: const EdgeInsets.all(15),
@@ -158,7 +159,7 @@ class _Manager {
   }
 
   void _listener() {
-    if (!overlay.mounted){
+    if (!overlay.mounted) {
       overlay.dispose();
       overlay.removeListener(_listener);
     }
