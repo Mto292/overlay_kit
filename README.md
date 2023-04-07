@@ -1,3 +1,5 @@
+[<img alt="alt_text" width="240px" src="https://cdn.buymeacoffee.com/buttons/default-orange.png" />](https://www.buymeacoffee.com/mustafahusF)
+
 # overlay_loading_progress
 A flutter package of overlay kit.
 
@@ -12,7 +14,7 @@ A flutter package of overlay kit.
 
 ```yaml
    dependencies:
-     overlay_kit: ^1.0.5
+     overlay_kit: ^1.0.6
 ```
 
 2- import package
