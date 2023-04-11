@@ -1,4 +1,7 @@
 ## 1.0.6
+dispose error fixed
+
+## 1.0.6
 doc edit
 
 ## 1.0.5

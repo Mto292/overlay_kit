@@ -35,7 +35,7 @@ class OverlayToastMessage extends StatefulWidget {
 
     final ctx = context ?? OverlayKit.overlayKitContext!;
     final over = OverlayEntry(builder: (BuildContext overlayContext) => this);
-    Overlay.of(ctx)!.insert(over);
+    Overlay.of(ctx).insert(over);
 
     final manager = _Manager(duration, over);
     if (dismissAll) OverlayToastManager().dismissAll();
@@ -156,11 +156,11 @@ class _Manager {
   void dismiss() {
     _timer.cancel();
     overlay.remove();
+    overlay.dispose();
   }
 
   void _listener() {
     if (!overlay.mounted) {
-      overlay.dispose();
       overlay.removeListener(_listener);
     }
   }
