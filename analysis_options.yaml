@@ -2,3 +2,13 @@ include: package:flutter_lints/flutter.yaml
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+
+linter:
+  # https://dart-lang.github.io/linter/lints/index.html.
+  # https://dart.dev/guides/language/analysis-options
+  rules:
+    prefer_is_empty: false
+    use_build_context_synchronously: false
+    no_leading_underscores_for_local_identifiers: false
+    library_private_types_in_public_api: false

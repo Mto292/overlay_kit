@@ -30,7 +30,7 @@ class OverlayLoadingProgress {
         loadingWidth: loadingWidth,
       );
     });
-    Overlay.of(ctx)!.insert(_overlay!);
+    Overlay.of(ctx).insert(_overlay!);
   }
 
   static stop() {

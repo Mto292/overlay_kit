@@ -1,4 +1,4 @@
-## 1.0.6
+## 1.0.7
 dispose error fixed
 
 ## 1.0.6
