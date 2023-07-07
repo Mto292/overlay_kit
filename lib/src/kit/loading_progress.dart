@@ -10,7 +10,6 @@ class OverlayLoadingProgress {
     BuildContext? context,
     Color? barrierColor = Colors.black54,
     Widget? widget,
-    Color color = Colors.black38,
     String? gifOrImagePath,
     bool barrierDismissible = false,
     double? loadingWidth,
@@ -22,7 +21,6 @@ class OverlayLoadingProgress {
     if (_overlay != null) return;
     _overlay = OverlayEntry(builder: (BuildContext context) {
       return _LoadingWidget(
-        color: color,
         barrierColor: barrierColor,
         widget: widget,
         gifOrImagePath: gifOrImagePath,
@@ -42,7 +40,6 @@ class OverlayLoadingProgress {
 
 class _LoadingWidget extends StatefulWidget {
   final Widget? widget;
-  final Color? color;
   final Color? barrierColor;
   final String? gifOrImagePath;
   final bool barrierDismissible;
@@ -51,7 +48,6 @@ class _LoadingWidget extends StatefulWidget {
   const _LoadingWidget({
     Key? key,
     this.widget,
-    this.color,
     this.barrierColor,
     this.gifOrImagePath,
     required this.barrierDismissible,

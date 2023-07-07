@@ -6,7 +6,6 @@ class OverlayKit extends StatelessWidget {
   final Widget child;
 
   /// Overlay builder context
-  /// you can use it in your overlay
   static BuildContext? overlayKitContext;
 
   /// The text direction for this subtree.

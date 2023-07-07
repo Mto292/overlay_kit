@@ -1,16 +1,10 @@
 import 'dart:math';
 
-import 'package:dop_logger/dop_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_kit/overlay_kit.dart';
 
-Future<void> main() async {
-  await DopLogger.init(
-    '',
-    false,
-    false,
-    () => runApp(const MyApp()),
-  );
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,10 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OverlayKit(
+      progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.amber),
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        theme: ThemeData(primaryColor: Colors.black),
+        home: const MyHomePage(
+          title: 'Flutter Demo Home Page',
+        ),
       ),
     );
   }
@@ -147,11 +144,11 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.black12,
             )
           ], borderRadius: BorderRadius.circular(15), color: Colors.white),
-          child: Padding(
-            padding: const EdgeInsets.all(15),
+          child: const Padding(
+            padding: EdgeInsets.all(15),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Icon(Icons.ac_unit),
                 SizedBox(width: 15),
                 Expanded(
@@ -171,6 +168,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void onTapNewPageBtn() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const MyHomePage(title: '',)));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => const MyHomePage(
+              title: '',
+            )));
   }
 }
