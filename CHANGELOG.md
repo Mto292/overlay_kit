@@ -1,3 +1,6 @@
+## 1.0.8
+appPrimaryColor added
+
 ## 1.0.7
 dispose error fixed
 

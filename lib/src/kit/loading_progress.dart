@@ -1,6 +1,6 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart' hide Overlay, OverlayEntry, OverlayState;
-import '../../overlay_kit.dart';
+import 'package:overlay_kit/src/kit/constant.dart';
 import '../overlay/overlay.dart';
 
 class OverlayLoadingProgress {
@@ -14,9 +14,9 @@ class OverlayLoadingProgress {
     bool barrierDismissible = false,
     double? loadingWidth,
   }) async {
-    assert(context != null || OverlayKit.overlayKitContext != null);
+    assert(context != null || OverlayKitConstant.overlayKitContext != null);
 
-    final ctx = context ?? OverlayKit.overlayKitContext!;
+    final ctx = context ?? OverlayKitConstant.overlayKitContext!;
 
     if (_overlay != null) return;
     _overlay = OverlayEntry(builder: (BuildContext context) {
@@ -90,7 +90,10 @@ class _LoadingWidgetState extends State<_LoadingWidget> {
                   dimension: widget.loadingWidth,
                   child: widget.gifOrImagePath != null
                       ? Image.asset(widget.gifOrImagePath!)
-                      : const CircularProgressIndicator(strokeWidth: 3),
+                      : CircularProgressIndicator(
+                          strokeWidth: 3,
+                          color: OverlayKitConstant.primaryColor,
+                        ),
                 ),
           ),
         ),

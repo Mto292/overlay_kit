@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OverlayKit(
-      progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.amber),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(primaryColor: Colors.black),

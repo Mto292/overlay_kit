@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' hide Overlay, OverlayEntry, OverlayState;
-import 'package:overlay_kit/overlay_kit.dart';
 import 'dart:async';
 import 'dart:ui' as ui;
 import '../overlay/overlay.dart';
+import 'constant.dart';
 
 class OverlayToastMessage extends StatefulWidget {
   final Widget? widget;
@@ -31,9 +31,9 @@ class OverlayToastMessage extends StatefulWidget {
   }) {
     assert(widget != null || textMessage != null);
     assert(duration > animDuration);
-    assert(context != null || OverlayKit.overlayKitContext != null);
+    assert(context != null || OverlayKitConstant.overlayKitContext != null);
 
-    final ctx = context ?? OverlayKit.overlayKitContext!;
+    final ctx = context ?? OverlayKitConstant.overlayKitContext!;
     final over = OverlayEntry(builder: (BuildContext overlayContext) => this);
     Overlay.of(ctx).insert(over);
 

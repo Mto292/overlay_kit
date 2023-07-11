@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart' hide Overlay, OverlayEntry, OverlayState;
+import 'package:overlay_kit/src/kit/constant.dart';
 
 import 'overlay.dart';
 
 class OverlayKit extends StatelessWidget {
   final Widget child;
 
-  /// Overlay builder context
-  static BuildContext? overlayKitContext;
-
   /// The text direction for this subtree.
   final TextDirection textDirection;
 
-  const OverlayKit({
-    Key? key,
+  OverlayKit({
+    super.key,
     required this.child,
     this.textDirection = TextDirection.ltr,
-  }) : super(key: key);
+    Color? appPrimaryColor,
+  }) {
+    OverlayKitConstant.primaryColor = appPrimaryColor;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class OverlayKit extends StatelessWidget {
         initialEntries: <OverlayEntry>[
           OverlayEntry(
             builder: (BuildContext ctx) {
-              overlayKitContext = ctx;
+              OverlayKitConstant.overlayKitContext = ctx;
               return child;
             },
           ),
