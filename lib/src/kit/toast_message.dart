@@ -14,6 +14,7 @@ class OverlayToastMessage extends StatefulWidget {
   final BorderRadiusGeometry? borderRadius;
   final TextStyle? textStyle;
   final TextDirection? textDirection;
+  final bool ignoring;
 
   OverlayToastMessage.show({
     super.key,
@@ -28,6 +29,7 @@ class OverlayToastMessage extends StatefulWidget {
     this.borderRadius,
     this.textStyle,
     this.textDirection,
+    this.ignoring = true,
   }) {
     assert(widget != null || textMessage != null);
     assert(duration > animDuration);
@@ -89,8 +91,7 @@ class _ToastWidgetState extends State<OverlayToastMessage> {
                         color: Colors.black12,
                       )
                     ],
-                    borderRadius:
-                        widget.borderRadius ?? BorderRadius.circular(8),
+                    borderRadius: widget.borderRadius ?? BorderRadius.circular(8),
                   ),
               child: Padding(
                 padding: const EdgeInsets.all(15),
@@ -128,6 +129,7 @@ class _ToastWidgetState extends State<OverlayToastMessage> {
     );
 
     w = IgnorePointer(
+      ignoring: widget.ignoring,
       child: Directionality(
         textDirection: widget.textDirection ?? TextDirection.ltr,
         child: Material(
