@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OverlayKit(
+      appPrimaryColor: Colors.red,
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(primaryColor: Colors.black),
@@ -74,6 +76,10 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Text('Dismiss All And Show Toast'),
             ),
             ElevatedButton(
+              onPressed: onTapShowToastWithButtonBtn,
+              child: const Text('Dismiss All And Show Toast'),
+            ),
+            ElevatedButton(
               onPressed: onTapNewPageBtn,
               child: const Text('New Page'),
             ),
@@ -109,7 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
         width: 100,
         color: Colors.black38,
         child: const Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            color: Colors.green,
+          ),
         ),
       ),
     );
@@ -119,6 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void onTapShowToastBtn() {
     OverlayToastMessage.show(
+      ignoring: false,
       textMessage: 'Toast Message',
     );
   }
@@ -171,5 +180,134 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (_) => const MyHomePage(
               title: '',
             )));
+  }
+
+  void onTapShowToastWithButtonBtn() {
+    OverlayToastMessage.show(
+      ignoring: false,
+      duration: const Duration(seconds: 5),
+      widget: const _ToastWithButtonWidget(
+        textMessage: 'Toast Message',
+        backgroundColor: Colors.white,
+        primaryColor: Colors.purple,
+        duration: 5,
+      ),
+    );
+  }
+}
+
+class _ToastWithButtonWidget extends StatefulWidget {
+  final String textMessage;
+  final Color backgroundColor;
+  final Color primaryColor;
+  final int duration;
+
+  const _ToastWithButtonWidget({
+    required this.textMessage,
+    required this.backgroundColor,
+    required this.primaryColor,
+    required this.duration,
+  });
+
+  @override
+  State<_ToastWithButtonWidget> createState() => _ToastWithButtonWidgetState();
+}
+
+class _ToastWithButtonWidgetState extends State<_ToastWithButtonWidget> {
+  double progress = 0;
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((temp) {
+      final durationInMillisecond = widget.duration * 1000;
+      timer = Timer.periodic(const Duration(milliseconds: 1), (time) {
+        progress = (timer!.tick + 200) / durationInMillisecond;
+        debugPrint(timer!.tick.toString());
+        debugPrint(progress.toString());
+        setState(() {});
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: Card(
+        color: widget.backgroundColor,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      widget.textMessage,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  SizedBox(
+                    height: 40,
+                    width: 4,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      overlayColor: Colors.grey,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                    child: const Text(
+                      'Ekle',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                      ),
+                    ),
+                    onPressed: () {
+                      debugPrint('Button Taped');
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                ],
+              ),
+            ),
+            ColoredBox(
+              color: Colors.red,
+              child: LinearProgressIndicator(
+                value: progress,
+                minHeight: 3,
+                valueColor: AlwaysStoppedAnimation<Color?>(
+                  widget.primaryColor,
+                ),
+                color: widget.primaryColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

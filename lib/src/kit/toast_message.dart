@@ -132,10 +132,7 @@ class _ToastWidgetState extends State<OverlayToastMessage> {
       ignoring: widget.ignoring,
       child: Directionality(
         textDirection: widget.textDirection ?? TextDirection.ltr,
-        child: Material(
-          color: Colors.transparent,
-          child: w,
-        ),
+        child: w,
       ),
     );
 
