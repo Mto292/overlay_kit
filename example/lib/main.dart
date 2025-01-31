@@ -96,7 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   onTapStartWithExtensionBtn() async {
-    Future.delayed(const Duration(seconds: 5)).callWithProgress();
+    Future.delayed(const Duration(seconds: 5)).callWithProgress(
+      circularProgressColor: Colors.red,
+    );
   }
 
   onTapStartGifLoadingProgressBtn() async {

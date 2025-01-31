@@ -882,8 +882,7 @@ class _RenderTheatre extends RenderBox with ContainerRenderObjectMixin<RenderBox
     return false;
   }
 
-  @protected
-  void paintStack(PaintingContext context, Offset offset) {
+  void _paintStack(PaintingContext context, Offset offset) {
     RenderBox? child = _firstOnstageChild;
     while (child != null) {
       final StackParentData childParentData = child.parentData! as StackParentData;
@@ -899,13 +898,13 @@ class _RenderTheatre extends RenderBox with ContainerRenderObjectMixin<RenderBox
         needsCompositing,
         offset,
         Offset.zero & size,
-        paintStack,
+        _paintStack,
         clipBehavior: clipBehavior,
         oldLayer: _clipRectLayer.layer,
       );
     } else {
       _clipRectLayer.layer = null;
-      paintStack(context, offset);
+      _paintStack(context, offset);
     }
   }
 

@@ -9,6 +9,7 @@ class OverlayLoadingProgress {
   static start({
     BuildContext? context,
     Color? barrierColor = Colors.black54,
+    Color? circularProgressColor,
     Widget? widget,
     String? gifOrImagePath,
     bool barrierDismissible = false,
@@ -26,6 +27,7 @@ class OverlayLoadingProgress {
         gifOrImagePath: gifOrImagePath,
         barrierDismissible: barrierDismissible,
         loadingWidth: loadingWidth,
+        circularProgressColor: circularProgressColor,
       );
     });
     Overlay.of(ctx).insert(_overlay!);
@@ -41,17 +43,19 @@ class OverlayLoadingProgress {
 class _LoadingWidget extends StatefulWidget {
   final Widget? widget;
   final Color? barrierColor;
+  final Color? circularProgressColor;
   final String? gifOrImagePath;
   final bool barrierDismissible;
   final double? loadingWidth;
 
   const _LoadingWidget({
     Key? key,
-    this.widget,
-    this.barrierColor,
-    this.gifOrImagePath,
+    required this.widget,
+    required this.barrierColor,
+    required this.gifOrImagePath,
     required this.barrierDismissible,
-    this.loadingWidth,
+    required this.loadingWidth,
+    required this.circularProgressColor,
   }) : super(key: key);
 
   @override
@@ -92,7 +96,7 @@ class _LoadingWidgetState extends State<_LoadingWidget> {
                       ? Image.asset(widget.gifOrImagePath!)
                       : CircularProgressIndicator(
                           strokeWidth: 3,
-                          color: OverlayKitConstant.primaryColor,
+                          color: widget.circularProgressColor ?? OverlayKitConstant.primaryColor,
                         ),
                 ),
           ),

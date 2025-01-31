@@ -1,4 +1,15 @@
-## 1.0.9
+## 1.1.1
+### Added
+- Enhanced `callWithProgress` method in `FutureExtension` to include customizable parameters:
+    - `BuildContext? context`
+    - `Color? barrierColor`
+    - `Color? circularProgressColor`
+    - `Widget? widget`
+    - `String? gifOrImagePath`
+    - `bool barrierDismissible`
+    - `double? loadingWidth`
+
+## 1.1.0
 Bug fix
 
 ## 1.0.9
