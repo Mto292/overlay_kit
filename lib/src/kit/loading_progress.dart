@@ -83,22 +83,23 @@ class _LoadingWidgetState extends State<_LoadingWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.barrierDismissible ? OverlayLoadingProgress.stop : null,
-      child: Container(
-        constraints: const BoxConstraints.expand(),
-        color: widget.barrierColor,
+      child: SizedBox.expand(
         child: GestureDetector(
           onTap: () {},
-          child: Center(
-            child: widget.widget ??
-                SizedBox.square(
-                  dimension: widget.loadingWidth,
-                  child: widget.gifOrImagePath != null
-                      ? Image.asset(widget.gifOrImagePath!)
-                      : CircularProgressIndicator(
-                          strokeWidth: 3,
-                          color: widget.circularProgressColor ?? OverlayKitConstant.primaryColor,
-                        ),
-                ),
+          child: ColoredBox(
+            color: widget.barrierColor ?? Colors.transparent,
+            child: Center(
+              child: widget.widget ??
+                  SizedBox.square(
+                    dimension: widget.loadingWidth,
+                    child: widget.gifOrImagePath != null
+                        ? Image.asset(widget.gifOrImagePath!)
+                        : CircularProgressIndicator(
+                            strokeWidth: 3,
+                            color: widget.circularProgressColor ?? OverlayKitConstant.primaryColor,
+                          ),
+                  ),
+            ),
           ),
         ),
       ),

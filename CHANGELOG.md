@@ -1,3 +1,6 @@
+## 1.1.2
+- Bug Fix: Fixed a bug related to the default widget.
+
 ## 1.1.1
 ### Added
 - Enhanced `callWithProgress` method in `FutureExtension` to include customizable parameters:
